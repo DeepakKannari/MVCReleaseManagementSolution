@@ -31,7 +31,7 @@ namespace MVCReleaseManagementProject.Controllers
                     case "teamlead": return RedirectToAction("viewModule", "TeamLead");
                     case "developer":
                         TempData["developer"] = result.userId;
-                        return RedirectToAction("index","developer");
+                        return RedirectToAction("viewModule", "developer");
                     case "tester":
                         TempData["testerId"] = result.userId;
                         return RedirectToAction("index","Tester");
