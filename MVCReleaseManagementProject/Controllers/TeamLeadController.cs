@@ -36,7 +36,22 @@ namespace MVCReleaseManagementProject.Controllers
             project_modules formvalues = module_.getProjectModuleValues();
             dbContext.project_modules.Add(formvalues);
             dbContext.SaveChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("viewModule");
+        }
+
+        public ActionResult viewCompletedModule()
+        {
+            var result = dbContext.project_modules.Where(s => s.module_status.Equals("completed")).Select(s => s);
+
+            return View(result);
+
+        }
+
+        public ActionResult viewapprovedModules()
+        {
+            var result = dbContext.project_modules.Where(s => s.module_status.Equals("approved")).Select(s => s);
+
+            return View(result);
         }
 
         public ActionResult viewModule()
@@ -55,8 +70,8 @@ namespace MVCReleaseManagementProject.Controllers
             {
                 result.module_status = "approved";
                 dbContext.SaveChanges();
-                var projectTable = dbContext.project_modules.Select(s => s);
-                return View(projectTable);
+                //var projectTable = dbContext.project_modules.Select(s => s);
+                return RedirectToAction("viewapprovedModules");
             }
             ViewBag.id = id;
             return View();

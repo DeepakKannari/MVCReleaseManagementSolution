@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<MVCReleaseManagementProject.Models.project_modules>
 
 @{
-    ViewBag.Title = "viewModule";
+    ViewBag.Title = "viewapprovedModules";
     Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
 
-<h2>viewModule</h2>
+<h2>viewapprovedModules</h2>
 
 <p>
-    @Html.ActionLink("Filter By Completed", "viewCompletedModule") |
-    @Html.ActionLink("Filter By Approved", "viewapprovedModules")
+    @Html.ActionLink("View All", "viewModule")
 </p>
 <table class="table">
     <tr>
@@ -73,8 +72,8 @@
             @Html.DisplayFor(modelItem => item.project.projectManager)
         </td>
         <td>
-            @*@Html.ActionLink("Approve Module", "approveModule", new { id=item.id }) |*@
-            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
         </td>
     </tr>
