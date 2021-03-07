@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MVCReleaseManagementProject.Models.project>
+
+@{
+    ViewBag.Title = "approveProject";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>approveProject</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.E_start_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.E_end_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.a_start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.a_end_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee1.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.E_start_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.E_end_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.a_start_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.a_end_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

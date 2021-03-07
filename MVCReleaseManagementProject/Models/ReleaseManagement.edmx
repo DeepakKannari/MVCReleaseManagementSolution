@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="releaseProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bugs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="moduleId" Type="int" />
+          <Property Name="BugDescription" Type="varchar" MaxLength="50" />
+          <Property Name="BugStatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="LogIn">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+          <Property Name="role" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="E_start_Date" Type="date" />
+          <Property Name="E_end_Date" Type="date" />
+          <Property Name="a_start_date" Type="date" />
+          <Property Name="a_end_date" Type="date" />
+          <Property Name="projectManager" Type="varchar" MaxLength="20" />
+          <Property Name="projectStatus" Type="varchar" MaxLength="20" />
+          <Property Name="TeamLead" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="project_modules">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="projectid" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="e_start_date" Type="date" />
+          <Property Name="e_end_date" Type="date" />
+          <Property Name="a_start_date" Type="date" />
+          <Property Name="a_end_date" Type="date" />
+          <Property Name="developer" Type="varchar" MaxLength="20" />
+          <Property Name="tester" Type="varchar" MaxLength="20" />
+          <Property Name="module_status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="bugs_moduleId_fk">
+          <End Role="project_modules" Type="Self.project_modules" Multiplicity="0..1" />
+          <End Role="bugs" Type="Self.bugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project_modules">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bugs">
+              <PropertyRef Name="moduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LogIn_userId_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="LogIn" Type="Self.LogIn" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogIn">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_manager_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="project" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="projectManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_modules_developer_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="project_modules" Type="Self.project_modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_modules">
+              <PropertyRef Name="developer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_modules_id_fk">
+          <End Role="project" Type="Self.project" Multiplicity="0..1" />
+          <End Role="project_modules" Type="Self.project_modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_modules">
+              <PropertyRef Name="projectid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_modules_tester_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="project_modules" Type="Self.project_modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_modules">
+              <PropertyRef Name="tester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="teamlead_manager_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="project" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="TeamLead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="releaseProjectModelStoreContainer">
+          <EntitySet Name="bugs" EntityType="Self.bugs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogIn" EntityType="Self.LogIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project" EntityType="Self.project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project_modules" EntityType="Self.project_modules" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="bugs_moduleId_fk" Association="Self.bugs_moduleId_fk">
+            <End Role="project_modules" EntitySet="project_modules" />
+            <End Role="bugs" EntitySet="bugs" />
+          </AssociationSet>
+          <AssociationSet Name="LogIn_userId_fk" Association="Self.LogIn_userId_fk">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="LogIn" EntitySet="LogIn" />
+          </AssociationSet>
+          <AssociationSet Name="project_manager_fk" Association="Self.project_manager_fk">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="project_modules_developer_fk" Association="Self.project_modules_developer_fk">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="project_modules" EntitySet="project_modules" />
+          </AssociationSet>
+          <AssociationSet Name="project_modules_id_fk" Association="Self.project_modules_id_fk">
+            <End Role="project" EntitySet="project" />
+            <End Role="project_modules" EntitySet="project_modules" />
+          </AssociationSet>
+          <AssociationSet Name="project_modules_tester_fk" Association="Self.project_modules_tester_fk">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="project_modules" EntitySet="project_modules" />
+          </AssociationSet>
+          <AssociationSet Name="teamlead_manager_fk" Association="Self.teamlead_manager_fk">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="releaseProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bug">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="moduleId" Type="Int32" />
+          <Property Name="BugDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BugStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="project_modules" Relationship="Self.bugs_moduleId_fk" FromRole="bugs" ToRole="project_modules" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LogIn" Relationship="Self.LogIn_userId_fk" FromRole="Employee" ToRole="LogIn" />
+          <NavigationProperty Name="projects" Relationship="Self.project_manager_fk" FromRole="Employee" ToRole="project" />
+          <NavigationProperty Name="project_modules" Relationship="Self.project_modules_developer_fk" FromRole="Employee" ToRole="project_modules" />
+          <NavigationProperty Name="project_modules1" Relationship="Self.project_modules_tester_fk" FromRole="Employee" ToRole="project_modules" />
+          <NavigationProperty Name="projects1" Relationship="Self.teamlead_manager_fk" FromRole="Employee" ToRole="project" />
+        </EntityType>
+        <EntityType Name="LogIn">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.LogIn_userId_fk" FromRole="LogIn" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="E_start_Date" Type="DateTime" Precision="0" />
+          <Property Name="E_end_Date" Type="DateTime" Precision="0" />
+          <Property Name="a_start_date" Type="DateTime" Precision="0" />
+          <Property Name="a_end_date" Type="DateTime" Precision="0" />
+          <Property Name="projectManager" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="projectStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TeamLead" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.project_manager_fk" FromRole="project" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.teamlead_manager_fk" FromRole="project" ToRole="Employee" />
+          <NavigationProperty Name="project_modules" Relationship="Self.project_modules_id_fk" FromRole="project" ToRole="project_modules" />
+        </EntityType>
+        <EntityType Name="project_modules">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="projectid" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="e_start_date" Type="DateTime" Precision="0" />
+          <Property Name="e_end_date" Type="DateTime" Precision="0" />
+          <Property Name="a_start_date" Type="DateTime" Precision="0" />
+          <Property Name="a_end_date" Type="DateTime" Precision="0" />
+          <Property Name="developer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tester" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="module_status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bugs" Relationship="Self.bugs_moduleId_fk" FromRole="project_modules" ToRole="bugs" />
+          <NavigationProperty Name="Employee" Relationship="Self.project_modules_developer_fk" FromRole="project_modules" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="Self.project_modules_tester_fk" FromRole="project_modules" ToRole="Employee" />
+          <NavigationProperty Name="project" Relationship="Self.project_modules_id_fk" FromRole="project_modules" ToRole="project" />
+        </EntityType>
+        <Association Name="bugs_moduleId_fk">
+          <End Role="project_modules" Type="Self.project_modules" Multiplicity="0..1" />
+          <End Role="bugs" Type="Self.bug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project_modules">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bugs">
+              <PropertyRef Name="moduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LogIn_userId_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="LogIn" Type="Self.LogIn" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogIn">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_manager_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="project" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="projectManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_modules_developer_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="project_modules" Type="Self.project_modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_modules">
+              <PropertyRef Name="developer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_modules_tester_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="project_modules" Type="Self.project_modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_modules">
+              <PropertyRef Name="tester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="teamlead_manager_fk">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="project" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="TeamLead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_modules_id_fk">
+          <End Role="project" Type="Self.project" Multiplicity="0..1" />
+          <End Role="project_modules" Type="Self.project_modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_modules">
+              <PropertyRef Name="projectid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="releaseProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bugs" EntityType="Self.bug" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="LogIns" EntityType="Self.LogIn" />
+          <EntitySet Name="projects" EntityType="Self.project" />
+          <EntitySet Name="project_modules" EntityType="Self.project_modules" />
+          <AssociationSet Name="bugs_moduleId_fk" Association="Self.bugs_moduleId_fk">
+            <End Role="project_modules" EntitySet="project_modules" />
+            <End Role="bugs" EntitySet="bugs" />
+          </AssociationSet>
+          <AssociationSet Name="LogIn_userId_fk" Association="Self.LogIn_userId_fk">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="LogIn" EntitySet="LogIns" />
+          </AssociationSet>
+          <AssociationSet Name="project_manager_fk" Association="Self.project_manager_fk">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="project" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="project_modules_developer_fk" Association="Self.project_modules_developer_fk">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="project_modules" EntitySet="project_modules" />
+          </AssociationSet>
+          <AssociationSet Name="project_modules_tester_fk" Association="Self.project_modules_tester_fk">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="project_modules" EntitySet="project_modules" />
+          </AssociationSet>
+          <AssociationSet Name="teamlead_manager_fk" Association="Self.teamlead_manager_fk">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="project" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="project_modules_id_fk" Association="Self.project_modules_id_fk">
+            <End Role="project" EntitySet="projects" />
+            <End Role="project_modules" EntitySet="project_modules" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="releaseProjectModelStoreContainer" CdmEntityContainer="releaseProjectEntities">
+          <EntitySetMapping Name="bugs">
+            <EntityTypeMapping TypeName="releaseProjectModel.bug">
+              <MappingFragment StoreEntitySet="bugs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="moduleId" ColumnName="moduleId" />
+                <ScalarProperty Name="BugDescription" ColumnName="BugDescription" />
+                <ScalarProperty Name="BugStatus" ColumnName="BugStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="releaseProjectModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogIns">
+            <EntityTypeMapping TypeName="releaseProjectModel.LogIn">
+              <MappingFragment StoreEntitySet="LogIn">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projects">
+            <EntityTypeMapping TypeName="releaseProjectModel.project">
+              <MappingFragment StoreEntitySet="project">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="E_start_Date" ColumnName="E_start_Date" />
+                <ScalarProperty Name="E_end_Date" ColumnName="E_end_Date" />
+                <ScalarProperty Name="a_start_date" ColumnName="a_start_date" />
+                <ScalarProperty Name="a_end_date" ColumnName="a_end_date" />
+                <ScalarProperty Name="projectManager" ColumnName="projectManager" />
+                <ScalarProperty Name="projectStatus" ColumnName="projectStatus" />
+                <ScalarProperty Name="TeamLead" ColumnName="TeamLead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project_modules">
+            <EntityTypeMapping TypeName="releaseProjectModel.project_modules">
+              <MappingFragment StoreEntitySet="project_modules">
+                <ScalarProperty Name="projectid" ColumnName="projectid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="e_start_date" ColumnName="e_start_date" />
+                <ScalarProperty Name="e_end_date" ColumnName="e_end_date" />
+                <ScalarProperty Name="a_start_date" ColumnName="a_start_date" />
+                <ScalarProperty Name="a_end_date" ColumnName="a_end_date" />
+                <ScalarProperty Name="developer" ColumnName="developer" />
+                <ScalarProperty Name="tester" ColumnName="tester" />
+                <ScalarProperty Name="module_status" ColumnName="module_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

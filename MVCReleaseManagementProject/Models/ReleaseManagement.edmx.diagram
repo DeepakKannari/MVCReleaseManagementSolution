@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ef9ee8a10a894a8c8a3f56b69e0b3508" Name="Diagram1">
+        <EntityTypeShape EntityType="releaseProjectModel.bug" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="releaseProjectModel.Employee" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="releaseProjectModel.LogIn" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="releaseProjectModel.project" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="releaseProjectModel.project_modules" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="releaseProjectModel.bugs_moduleId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="releaseProjectModel.LogIn_userId_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="releaseProjectModel.project_manager_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="releaseProjectModel.project_modules_developer_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="releaseProjectModel.project_modules_tester_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="releaseProjectModel.teamlead_manager_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="releaseProjectModel.project_modules_id_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
