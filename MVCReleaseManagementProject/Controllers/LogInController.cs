@@ -30,7 +30,9 @@ namespace MVCReleaseManagementProject.Controllers
                     case "manager":  return RedirectToAction("index","Manager");
                     case "teamlead": return RedirectToAction("index","TeamLead");
                     //case "developer": return RedirectToAction("index","developer");
-                    //case "tester": return RedirectToAction("index","tester");
+                    case "tester":
+                        TempData["testerId"] = result.userId;
+                        return RedirectToAction("index","Tester");
                 }
             }
             return View();

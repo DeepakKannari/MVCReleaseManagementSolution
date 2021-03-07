@@ -34,5 +34,7 @@ namespace MVCReleaseManagementProject.Models
         public System.Data.Entity.DbSet<MVCReleaseManagementProject.Models.projectViewModel> projectViewModels { get; set; }
 
         public System.Data.Entity.DbSet<MVCReleaseManagementProject.Models.moduleViewModel> moduleViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<MVCReleaseManagementProject.Models.bugViewModel> bugViewModels { get; set; }
     }
 }

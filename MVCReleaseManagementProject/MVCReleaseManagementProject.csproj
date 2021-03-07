@@ -132,12 +132,14 @@
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\TeamLeadController.cs" />
+    <Compile Include="Controllers\TesterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\bug.cs">
       <DependentUpon>ReleaseManagement.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bugViewModel.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>ReleaseManagement.tt</DependentUpon>
     </Compile>
@@ -235,6 +237,10 @@
     <Content Include="Views\TeamLead\addModule.cshtml" />
     <Content Include="Views\TeamLead\viewModule.cshtml" />
     <Content Include="Views\TeamLead\approveModule.cshtml" />
+    <Content Include="Views\Shared\LayoutTester.cshtml" />
+    <Content Include="Views\Tester\Index.cshtml" />
+    <Content Include="Views\Tester\viewModule.cshtml" />
+    <Content Include="Views\Tester\raiseABug.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
