@@ -43,6 +43,52 @@ namespace MVCReleaseManagementProject.Controllers
 
         }
 
+        public ActionResult viewCompletedModule()
+        {
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+
+            var result = dbContext.project_modules.Where(s => s.tester.Equals(testerId) && s.module_status.Equals("completed"));
+
+            return View(result);
+
+        }
+
+        public ActionResult viewApprovedModule()
+        {
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+
+            var result = dbContext.project_modules.Where(s => s.tester.Equals(testerId) && s.module_status.Equals("approved"));
+
+            return View(result);
+
+        }
+
+        public ActionResult viewDevelopmentModule()
+        {
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+
+            var result = dbContext.project_modules.Where(s => s.tester.Equals(testerId) && s.module_status.Equals("development"));
+
+            return View(result);
+
+        }
+
+        public ActionResult viewtestingModule()
+        {
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+
+            var result = dbContext.project_modules.Where(s => s.tester.Equals(testerId) && s.module_status.Equals("testing"));
+
+            return View(result);
+
+        }
+
+
+
         public ActionResult viewbugs()
         {
             //var result = dbContext.bugs.Where(s => s.tester.Equals("geo"));
@@ -97,6 +143,24 @@ namespace MVCReleaseManagementProject.Controllers
               
             }
             return View();
+        }
+
+        public ActionResult completeModule(int id)
+        {
+            var result = dbContext.project_modules.FirstOrDefault(s => s.id.Equals(id));
+
+            if (result != null)
+            {
+                result.module_status = "completed";
+                dbContext.SaveChanges();
+                var projectTable = dbContext.project_modules.Where(s => s.tester.Equals(testerId));
+                //var projectTable = dbContext.project_modules.Select(s => s);
+                return RedirectToAction("viewModule");
+            }
+
+            return View();
+
+
         }
 
 

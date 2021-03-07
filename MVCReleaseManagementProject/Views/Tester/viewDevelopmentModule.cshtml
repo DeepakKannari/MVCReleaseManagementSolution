@@ -1,0 +1,82 @@
+﻿@model IEnumerable<MVCReleaseManagementProject.Models.project_modules>
+
+@{
+    ViewBag.Title = "viewDevelopmentModule";
+    Layout = "~/Views/Shared/LayoutTester.cshtml";
+}
+
+<h2>viewDevelopmentModule</h2>
+
+<p>
+    @Html.ActionLink("View All", "viewModul")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.e_start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.e_end_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.a_start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.a_end_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.module_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee1.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project.projectManager)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.e_start_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.e_end_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.a_start_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.a_end_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.module_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.project.projectManager)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+        </td>
+    </tr>
+}
+
+</table>

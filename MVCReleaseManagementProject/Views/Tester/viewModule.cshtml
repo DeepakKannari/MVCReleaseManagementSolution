@@ -10,7 +10,11 @@
 
 
 <p>
-    @*@Html.ActionLink("Create New", "Create")*@
+    @Html.ActionLink("Filter By Completed", "viewCompletedModule") |
+    @Html.ActionLink("Filter By Approved", "viewApprovedModule") |
+    @Html.ActionLink("Filter By Development", "viewDevelopmentModule") |
+    @Html.ActionLink("Filter By Testing", "viewtestingModule") |
+
 </p>
 <table class="table">
     <tr>
@@ -75,7 +79,7 @@
                 @Html.DisplayFor(modelItem => item.project.projectManager)
             </td>
             <td>
-                @Html.ActionLink("Raise a bug", "raiseABug", new { id = item.id }) |
+                @*@Html.ActionLink("Raise a bug", "raiseABug", new { id = item.id }) |*@
                 @*@Html.ActionLink("Details", "Details", new { id=item.id }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
             </td>
