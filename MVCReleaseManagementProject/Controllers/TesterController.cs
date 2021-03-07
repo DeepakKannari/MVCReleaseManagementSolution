@@ -11,7 +11,7 @@ namespace MVCReleaseManagementProject.Controllers
     public class TesterController : Controller
     {
         releaseProjectEntities dbContext = new releaseProjectEntities();
-        static string testerId;
+        static string testerId = "skrillie";
         // GET: Tester
         public ActionResult Index()
         {
@@ -33,8 +33,25 @@ namespace MVCReleaseManagementProject.Controllers
         public ActionResult viewbugs()
         {
             //var result = dbContext.bugs.Where(s => s.tester.Equals("geo"));
+            var joinresult = dbContext.bugs.Join(dbContext.project_modules,
+                b => b.moduleId,
+                p => p.id,
+                (b, p) => new { b.id, b.moduleId, b.BugStatus, b.BugDescription,p.tester });
+            var result = joinresult.Where(s=>s.tester.Equals(testerId)).Select(b=>new { id=b.id, moduleid=b.moduleId, bugstatus=b.BugStatus,bugdescription=b.BugDescription });
+            List<bug> bugtable = new List<bug>();
+            bug tempbug = new bug();
+            //for(int i=0;i<result.Count();i++)
+            foreach (var item in result)
+            {
+                tempbug.id = item.id;
+                tempbug.moduleId = item.moduleid;
+                tempbug.BugDescription = item.bugdescription;
+                tempbug.BugStatus = item.bugstatus;
+                bugtable.Add(tempbug);
+                
 
-            return View(/*result*/);
+            }
+            return View(bugtable);
 
         }
         public ActionResult raiseABug()
@@ -47,10 +64,11 @@ namespace MVCReleaseManagementProject.Controllers
         
         public ActionResult raiseABug(bugViewModel bugView_)
         {
-            //bug bugView = bugView_.getbugValues();
-            //dbContext.bugs.Add(bugView);
-            //var result = dbContext.project_modules.FirstOrDefault(s => s.Id.Equals(id));
-            return RedirectToAction("view");
+            bug bugView = bugView_.getbugValues();
+            dbContext.bugs.Add(bugView);
+            dbContext.SaveChanges();
+
+            return RedirectToAction("viewbugs");
         }
 
 
