@@ -31,6 +31,50 @@ namespace MVCReleaseManagementProject.Controllers
 
         }
 
+        public ActionResult viewCompletedModule()
+        {
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+
+            var result = dbContext.project_modules.Where(s => s.developer.Equals(developerId) && s.module_status.Equals("completed"));
+
+            return View(result);
+
+        }
+
+        public ActionResult viewApprovedModule()
+        {
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+
+            var result = dbContext.project_modules.Where(s => s.developer.Equals(developerId) && s.module_status.Equals("approved"));
+
+            return View(result);
+
+        }
+
+        public ActionResult viewDevelopmentModule()
+        {
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+
+            var result = dbContext.project_modules.Where(s => s.developer.Equals(developerId) && s.module_status.Equals("development"));
+
+            return View(result);
+
+        }
+
+        public ActionResult viewtestingModule()
+        {
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+
+            var result = dbContext.project_modules.Where(s => s.developer.Equals(developerId) && s.module_status.Equals("testing"));
+
+            return View(result);
+
+        }
+
         public ActionResult completeModule(int id)
         {
             var result = dbContext.project_modules.FirstOrDefault(s => s.id.Equals(id));
@@ -41,7 +85,7 @@ namespace MVCReleaseManagementProject.Controllers
                 dbContext.SaveChanges();
                 var projectTable = dbContext.project_modules.Where(s => s.developer.Equals(developerId));
                 //var projectTable = dbContext.project_modules.Select(s => s);
-                return View(projectTable);
+                return RedirectToAction("viewModule");
             }
             
             return View();

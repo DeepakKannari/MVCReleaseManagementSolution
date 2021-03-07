@@ -253,6 +253,10 @@
     <Content Include="Views\Manager\viewapprovedModules.cshtml" />
     <Content Include="Views\TeamLead\viewCompletedModule.cshtml" />
     <Content Include="Views\TeamLead\viewapprovedModules.cshtml" />
+    <Content Include="Views\Developer\viewCompletedModule.cshtml" />
+    <Content Include="Views\Developer\viewApprovedModule.cshtml" />
+    <Content Include="Views\Developer\viewDevelopmentModule.cshtml" />
+    <Content Include="Views\Developer\viewtestingModule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
