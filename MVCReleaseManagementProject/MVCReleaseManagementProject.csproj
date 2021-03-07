@@ -247,6 +247,10 @@
     <Content Include="Views\Developer\viewModule.cshtml" />
     <Content Include="Views\Developer\completeModule.cshtml" />
     <Content Include="Views\Developer\viewbugs.cshtml" />
+    <Content Include="Views\Manager\viewcompleted.cshtml" />
+    <Content Include="Views\Manager\viewapproved.cshtml" />
+    <Content Include="Views\Manager\viewCompletedModule.cshtml" />
+    <Content Include="Views\Manager\viewapprovedModules.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<MVCReleaseManagementProject.Models.project>
 
 @{
-    ViewBag.Title = "approveProject";
+    ViewBag.Title = "viewcompleted";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-<h2>approveProject</h2>
+<h2>viewcompleted</h2>
 
 <p>
-    @Html.ActionLink("Filter By Completed", "viewcompleted") |
-    @Html.ActionLink("Filter By Approved", "viewapproved") |
+    @Html.ActionLink("View All", "viewProject")
 </p>
 <table class="table">
     <tr>
@@ -61,9 +60,10 @@
             @Html.DisplayFor(modelItem => item.Employee1.Name)
         </td>
         <td>
-            @*@Html.ActionLink("approveProject", "approveProject", new { id=item.Id }) |*@
-            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            @Html.ActionLink("approveProject", "approveProject", new { id = item.Id }) |
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
         </td>
     </tr>
 }

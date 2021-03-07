@@ -27,7 +27,7 @@ namespace MVCReleaseManagementProject.Controllers
             {
                 switch (result.role)
                 {
-                    case "manager":  return RedirectToAction("index","Manager");
+                    case "manager":  return RedirectToAction("viewProject", "Manager");
                     case "teamlead": return RedirectToAction("index","TeamLead");
                     case "developer":
                         TempData["developer"] = result.userId;

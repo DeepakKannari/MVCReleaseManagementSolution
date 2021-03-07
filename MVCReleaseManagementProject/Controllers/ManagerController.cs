@@ -32,7 +32,7 @@ namespace MVCReleaseManagementProject.Controllers
             project formvalues = project_.getprojectvalues();
             dbContext.projects.Add(formvalues);
             dbContext.SaveChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("viewProject");
         }
 
         public ActionResult approveProject(int id)
@@ -58,6 +58,21 @@ namespace MVCReleaseManagementProject.Controllers
             return View(result);
                        
         }
+
+        public ActionResult viewcompleted()
+        {
+            var result = dbContext.projects.Where(s=>s.projectStatus.Equals("completed")).Select(s => s);
+
+            return View(result);
+
+        }
+
+        public ActionResult viewapproved()
+        {
+            var result = dbContext.projects.Where(s => s.projectStatus.Equals("approved")).Select(s => s);
+
+            return View(result);
+        }
         public ActionResult approveModule(int id)
         {
             var result = dbContext.project_modules.FirstOrDefault(s => s.id.Equals(id));
@@ -66,13 +81,28 @@ namespace MVCReleaseManagementProject.Controllers
             {
                 result.module_status = "approved";
                 dbContext.SaveChanges();
-                var projectTable = dbContext.project_modules.Select(s => s);
-                return View(projectTable);
+                //var projectTable = dbContext.project_modules.Select(s => s);
+                return RedirectToAction("viewapprovedModules");
             }
             ViewBag.id = id;
             return View();
 
            
+        }
+
+        public ActionResult viewCompletedModule()
+        {
+            var result = dbContext.project_modules.Where(s => s.module_status.Equals("completed")).Select(s => s);
+
+            return View(result);
+
+        }
+
+        public ActionResult viewapprovedModules()
+        {
+            var result = dbContext.project_modules.Where(s => s.module_status.Equals("approved")).Select(s => s);
+
+            return View(result);
         }
 
         public ActionResult viewModule()
