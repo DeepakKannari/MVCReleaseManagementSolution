@@ -39,10 +39,11 @@ namespace MVCReleaseManagementProject.Controllers
                 (b, p) => new { b.id, b.moduleId, b.BugStatus, b.BugDescription,p.tester });
             var result = joinresult.Where(s=>s.tester.Equals(testerId)).Select(b=>new { id=b.id, moduleid=b.moduleId, bugstatus=b.BugStatus,bugdescription=b.BugDescription });
             List<bug> bugtable = new List<bug>();
-            bug tempbug = new bug();
+            
             //for(int i=0;i<result.Count();i++)
             foreach (var item in result)
             {
+                bug tempbug = new bug();
                 tempbug.id = item.id;
                 tempbug.moduleId = item.moduleid;
                 tempbug.BugDescription = item.bugdescription;
@@ -69,6 +70,20 @@ namespace MVCReleaseManagementProject.Controllers
             dbContext.SaveChanges();
 
             return RedirectToAction("viewbugs");
+        }
+
+        public ActionResult closeBug(int id)
+        {
+            var result = dbContext.bugs.FirstOrDefault(s => s.id.Equals(id));
+            if (result != null)
+            {
+                result.BugStatus = "closed";
+                dbContext.SaveChanges();
+                var bugtable = dbContext.bugs.Select(s => s);
+                return RedirectToAction("viewbugs"); ;
+              
+            }
+            return View();
         }
 
 
