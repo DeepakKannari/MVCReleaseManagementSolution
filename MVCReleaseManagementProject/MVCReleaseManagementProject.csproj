@@ -232,6 +232,7 @@
     <Content Include="Views\Manager\approveModule.cshtml" />
     <Content Include="Views\TeamLead\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPage2.cshtml" />
+    <Content Include="Views\TeamLead\addModules.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,9 +38,9 @@ namespace MVCReleaseManagementProject.Models
             }
 
            var pids = dbcontext.projects.Select(s=>s.Id);
-            foreach (var item in results)
+            foreach (var item in pids)
             {
-                this.listOfProjectIds.Add(new SelectListItem() { Text = item, Value = item });
+                this.listOfProjectIds.Add(new SelectListItem() { Text =item+"", Value = item+"" });
             }
         }
 

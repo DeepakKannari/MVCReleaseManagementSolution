@@ -32,5 +32,7 @@ namespace MVCReleaseManagementProject.Models
         public virtual DbSet<project_modules> project_modules { get; set; }
 
         public System.Data.Entity.DbSet<MVCReleaseManagementProject.Models.projectViewModel> projectViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<MVCReleaseManagementProject.Models.moduleViewModel> moduleViewModels { get; set; }
     }
 }
