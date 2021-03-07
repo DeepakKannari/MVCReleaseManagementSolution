@@ -15,13 +15,26 @@ namespace MVCReleaseManagementProject.Controllers
         // GET: Tester
         public ActionResult Index()
         {
-            testerId = TempData["testerId"] as string;
-            ViewBag.tester = testerId;
-            return View();
+            if (TempData.ContainsKey("testerId"))
+            {
+                testerId = TempData["testerId"] as string;
+                ViewBag.tester = testerId;
+                return RedirectToAction("viewModule");
+            }
+            else
+            {
+                testerId = "skrillie";
+                return RedirectToAction("viewModule");
+            }
+            //testerId = TempData["testerId"] as string;
+            //ViewBag.tester = testerId;
+            //return View();
         }
 
         public ActionResult viewModule()
         {
+            
+            
             //testerId = TempData["testerId"] as string;
             //ViewBag.tester = testerId;
             var result = dbContext.project_modules.Where(s => s.tester.Equals(testerId));

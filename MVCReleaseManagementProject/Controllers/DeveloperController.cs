@@ -14,9 +14,17 @@ namespace MVCReleaseManagementProject.Controllers
         // GET: Developer
         public ActionResult Index()
         {
-            developerId = TempData["developer"] as string;
-            ViewBag.tester = developerId;
-            return View();
+            if (TempData.ContainsKey("developer"))
+            {
+                developerId = TempData["developer"] as string;
+                ViewBag.tester = developerId;
+                return RedirectToAction("viewModule");
+            }
+            else
+            {
+                developerId = "marvel";
+                return RedirectToAction("viewModule");
+            }
            
         }
 

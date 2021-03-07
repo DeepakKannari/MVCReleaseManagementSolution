@@ -34,7 +34,7 @@ namespace MVCReleaseManagementProject.Controllers
                         return RedirectToAction("viewModule", "developer");
                     case "tester":
                         TempData["testerId"] = result.userId;
-                        return RedirectToAction("index","Tester");
+                        return RedirectToAction("viewModule", "Tester");
                 }
             }
             return View();
