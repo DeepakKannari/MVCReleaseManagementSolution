@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/LayoutTester.cshtml";
 }
 
-<h2>viewModule</h2>
+<h2>All Modules</h2>
 <h2>@ViewBag.tester</h2>
 
 
@@ -42,9 +42,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Employee1.Name)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.project.projectManager)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -75,9 +75,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Employee1.Name)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.project.projectManager)
-            </td>
+            </td>*@
             <td>
                 @*@Html.ActionLink("Raise a bug", "raiseABug", new { id = item.id }) |*@
                 @*@Html.ActionLink("Details", "Details", new { id=item.id }) |

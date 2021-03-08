@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/LayoutDeveloper.cshtml";
 }
 
-<h2>viewDevelopmentModule</h2>
+<h2>Development Modules</h2>
 
 <p>
     @Html.ActionLink("View All", "viewModule")
@@ -36,9 +36,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Employee1.Name)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.project.projectManager)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -68,9 +68,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Employee1.Name)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.project.projectManager)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Move to Testing", "completeModule", new { id = item.id })
             @*@Html.ActionLink("Move to Testing", "Edit", new { id = item.id }) |*@

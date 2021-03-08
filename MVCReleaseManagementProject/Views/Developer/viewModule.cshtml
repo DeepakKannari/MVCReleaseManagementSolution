@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/LayoutDeveloper.cshtml";
 }
 
-<h2>viewModule</h2>
+<h2>View All Modules</h2>
 
 <p>
     @Html.ActionLink("Filter By Completed", "viewCompletedModule") |
@@ -39,9 +39,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Employee1.Name)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.project.projectManager)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -71,9 +71,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Employee1.Name)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.project.projectManager)
-        </td>
+        </td>*@
         <td>
             @*@Html.ActionLink("Mark completed", "completeModule", new { id = item.id })*@
             @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
