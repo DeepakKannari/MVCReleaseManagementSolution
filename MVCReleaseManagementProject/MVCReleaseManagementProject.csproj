@@ -170,6 +170,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReleaseManagement.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\signupViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +264,7 @@
     <Content Include="Views\Tester\viewApprovedModule.cshtml" />
     <Content Include="Views\Tester\viewDevelopmentModule.cshtml" />
     <Content Include="Views\Tester\viewtestingModule.cshtml" />
+    <Content Include="Views\LogIn\registerEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

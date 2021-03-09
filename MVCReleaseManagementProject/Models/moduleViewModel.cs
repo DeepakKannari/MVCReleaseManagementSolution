@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,20 +9,37 @@ namespace MVCReleaseManagementProject.Models
 {
     public class moduleViewModel
     {
+        [Required]
         public Nullable<int> projectid { get; set; }
+        [Required]
+        [RegularExpression("[a-zA-Z]+")]
         public string name { get; set; }
+        [Required]
         public int id { get; set; }
+        [Required]
         public Nullable<System.DateTime> e_start_date { get; set; }
+        [Required]
         public Nullable<System.DateTime> e_end_date { get; set; }
+        [Required]
         public Nullable<System.DateTime> a_start_date { get; set; }
+        [Required]
         public Nullable<System.DateTime> a_end_date { get; set; }
+        [Required]
         public string developer { get; set; }
+        [Required]
         public string tester { get; set; }
+        [Required]
         public string module_status { get; set; }
 
         public List<SelectListItem> listofdevelopers = new List<SelectListItem>();
         public List<SelectListItem> listOftesters = new List<SelectListItem>();
         public List<SelectListItem> listOfProjectIds = new List<SelectListItem>();
+        public List<SelectListItem> listOfStatus = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "development", Value = "development"},
+            new SelectListItem() { Text = "testing", Value = "testing"},
+            new SelectListItem() { Text = "completed", Value = "completed"},
+        };
 
         public void populatelist()
         {

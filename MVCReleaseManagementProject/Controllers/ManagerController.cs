@@ -23,29 +23,50 @@ namespace MVCReleaseManagementProject.Controllers
             projectView.populatelist();
             ViewBag.managers = projectView.listofprojectmanagers;
             ViewBag.teamleads = projectView.listOfTeamLead;
+            ViewBag.status = projectView.listOfStatus;
             return View(projectView);   
         }
 
         [HttpPost]
         public ActionResult addProject(projectViewModel project_)
         {
-            project formvalues = project_.getprojectvalues();
-            dbContext.projects.Add(formvalues);
-            dbContext.SaveChanges();
-            return RedirectToAction("viewProject");
+            if (!ModelState.IsValid)
+            {
+                projectViewModel projectView = new projectViewModel();
+                projectView.populatelist();
+                ViewBag.managers = projectView.listofprojectmanagers;
+                ViewBag.teamleads = projectView.listOfTeamLead;
+                ViewBag.status = projectView.listOfStatus;
+                return View();
+                //project formvalues = project_.getprojectvalues();
+                //dbContext.projects.Add(formvalues);
+                //dbContext.SaveChanges();
+                //return RedirectToAction("viewProject");
+            }
+            else
+            {
+                project formvalues = project_.getprojectvalues();
+                dbContext.projects.Add(formvalues);
+                dbContext.SaveChanges();
+                return RedirectToAction("viewProject");
+            }
         }
 
         public ActionResult approveProject(int id)
         {
-            var result = dbContext.projects.FirstOrDefault(s=>s.Id.Equals(id));
             
-            if (result != null)
-            {
-                result.projectStatus = "approved";
-                dbContext.SaveChanges();
-                var projectTable = dbContext.projects.Select(s => s);
-                return View(projectTable);
-            }
+            
+                var result = dbContext.projects.FirstOrDefault(s => s.Id.Equals(id));
+
+                if (result != null)
+                {
+
+                    result.projectStatus = "approved";
+                    dbContext.SaveChanges();
+                    var projectTable = dbContext.projects.Select(s => s);
+                    return View(projectTable);
+                }
+            
 
             ViewBag.id = id;
             return View();

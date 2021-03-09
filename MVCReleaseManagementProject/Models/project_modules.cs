@@ -11,7 +11,8 @@ namespace MVCReleaseManagementProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+   
+
     public partial class project_modules
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +20,26 @@ namespace MVCReleaseManagementProject.Models
         {
             this.bugs = new HashSet<bug>();
         }
-    
+
+       
         public Nullable<int> projectid { get; set; }
+        
         public string name { get; set; }
+       
         public int id { get; set; }
+        
         public Nullable<System.DateTime> e_start_date { get; set; }
+        
         public Nullable<System.DateTime> e_end_date { get; set; }
+        
         public Nullable<System.DateTime> a_start_date { get; set; }
+        
         public Nullable<System.DateTime> a_end_date { get; set; }
+        
         public string developer { get; set; }
+        
         public string tester { get; set; }
+       
         public string module_status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -11,7 +11,13 @@ namespace MVCReleaseManagementProject.Controllers
     public class LogInController : Controller
     {
         List<string> roles = new List<string>() {"teamlead","manager","developer","tester"};
-
+        public List<SelectListItem> listOfroles = new List<SelectListItem>()
+        {
+            new SelectListItem() { Text = "Developer", Value = "developer"},
+            new SelectListItem() { Text = "Tester", Value = "tester"},
+            new SelectListItem() { Text = "Team Lead", Value = "teamlead"},
+            new SelectListItem() { Text = "Manager", Value = "manager"},
+        };
         releaseProjectEntities dbContext = new releaseProjectEntities();
         // GET: LogIn
         public ActionResult LogIn()
@@ -37,6 +43,20 @@ namespace MVCReleaseManagementProject.Controllers
                         return RedirectToAction("viewModule", "Tester");
                 }
             }
+            return View();
+        }
+
+        public ActionResult registerEmployee()
+        {
+            ViewBag.roles = listOfroles;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult registerEmployee(signupViewModel signup)
+        {
+            ViewBag.roles = listOfroles;
+
             return View();
         }
     }

@@ -27,16 +27,30 @@ namespace MVCReleaseManagementProject.Controllers
             ViewBag.developers = moduleview.listofdevelopers;
             ViewBag.testers = moduleview.listOftesters;
             ViewBag.projectIds = moduleview.listOfProjectIds;
+            ViewBag.status = moduleview.listOfStatus;
             return View(moduleview);
         }
 
         [HttpPost]
         public ActionResult addModule(moduleViewModel module_)
         {
-            project_modules formvalues = module_.getProjectModuleValues();
-            dbContext.project_modules.Add(formvalues);
-            dbContext.SaveChanges();
-            return RedirectToAction("viewModule");
+            if (!ModelState.IsValid)
+            {
+                moduleViewModel moduleview = new moduleViewModel();
+                moduleview.populatelist();
+                ViewBag.developers = moduleview.listofdevelopers;
+                ViewBag.testers = moduleview.listOftesters;
+                ViewBag.projectIds = moduleview.listOfProjectIds;
+                ViewBag.status = moduleview.listOfStatus;
+                return View();
+            }
+            else
+            {
+                project_modules formvalues = module_.getProjectModuleValues();
+                dbContext.project_modules.Add(formvalues);
+                dbContext.SaveChanges();
+                return RedirectToAction("viewModule");
+            }
         }
 
         public ActionResult viewCompletedModule()
