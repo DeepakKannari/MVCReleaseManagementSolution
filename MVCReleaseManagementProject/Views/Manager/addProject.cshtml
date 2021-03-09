@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-<h2>Add Project</h2>
+<h2 style="text-align: center;">Add Project</h2>
 
 
     @using (Html.BeginForm())
@@ -13,20 +13,21 @@
         @Html.AntiForgeryToken()
 
 
-        <div class="form-horizontal">
+    
+        <div class="form-horizontal" >
             <h4></h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
+            <div class="form-group" >
                 @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" , @placeholder="id" } })
+                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @placeholder = "id" } })
                     @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" >
                 @Html.LabelFor(model => model.E_start_Date, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.E_start_Date, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
@@ -59,14 +60,14 @@
             </div>
 
             @*<div class="form-group">
-                    @Html.LabelFor(model => model.projectManager, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.projectManager, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.projectManager, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+                @Html.LabelFor(model => model.projectManager, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.projectManager, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.projectManager, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
             <div class="form-group">
-                @Html.LabelFor(model => model.projectManager, "projectManager", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.projectManager, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.projectManager, new SelectList(ViewBag.managers, "Value", "Text"), "select", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.projectManager, "", new { @class = "text-danger" })
@@ -76,7 +77,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.projectStatus, "projectStatus", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.projectStatus, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.projectStatus, new SelectList(ViewBag.status, "Value", "Text"), "select", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.projectStatus, "", new { @class = "text-danger" })
@@ -84,14 +85,14 @@
             </div>
 
             @*<div class="form-group">
-                    @Html.LabelFor(model => model.TeamLead, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TeamLead, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TeamLead, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+                @Html.LabelFor(model => model.TeamLead, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TeamLead, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TeamLead, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
             <div class="form-group">
-                @Html.LabelFor(model => model.TeamLead, "TeamLead", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.TeamLead, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.TeamLead, new SelectList(ViewBag.teamleads, "Value", "Text"), "select", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.TeamLead, "", new { @class = "text-danger" })
@@ -104,9 +105,9 @@
                 </div>
             </div>
         </div>
-
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        
+            }
+       
+        <div>
+            @Html.ActionLink("Back to List", "viewProject")
+        </div>

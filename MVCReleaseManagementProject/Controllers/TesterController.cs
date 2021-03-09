@@ -118,6 +118,7 @@ namespace MVCReleaseManagementProject.Controllers
         {
             bugViewModel bugView = new bugViewModel();
             bugView.populatelist(testerId);
+            
             ViewBag.moduleIds = bugView.listofmoduleIds;
             return View();
         }

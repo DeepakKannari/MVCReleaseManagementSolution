@@ -10,25 +10,37 @@ namespace MVCReleaseManagementProject.Models
     public class moduleViewModel
     {
         [Required]
+        [Display(Name ="Project Id")]
         public Nullable<int> projectid { get; set; }
         [Required]
-        [RegularExpression("[a-zA-Z]+")]
+        [RegularExpression("[a-zA-Z]+",ErrorMessage = "Use alphabets only")]
+        [Display(Name ="Module Name")]
         public string name { get; set; }
         [Required]
+        [Display(Name ="Module Id")]
+        [Range(1,1000,ErrorMessage ="The Module id should be between 1-1000")]
         public int id { get; set; }
         [Required]
+        [Display(Name = "Expected Start Date")]
         public Nullable<System.DateTime> e_start_date { get; set; }
+        
         [Required]
+        [Display(Name = "Expected End Date")]
         public Nullable<System.DateTime> e_end_date { get; set; }
         [Required]
+        [Display(Name = "Actual Start Date")]
         public Nullable<System.DateTime> a_start_date { get; set; }
         [Required]
+        [Display(Name ="Actual End Date")]
         public Nullable<System.DateTime> a_end_date { get; set; }
         [Required]
+        [Display(Name ="Developer")]
         public string developer { get; set; }
         [Required]
+        [Display(Name = "Tester")]
         public string tester { get; set; }
         [Required]
+        [Display(Name = "Module Status")]
         public string module_status { get; set; }
 
         public List<SelectListItem> listofdevelopers = new List<SelectListItem>();

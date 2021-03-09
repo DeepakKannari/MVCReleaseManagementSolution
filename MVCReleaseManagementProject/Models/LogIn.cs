@@ -18,9 +18,7 @@ namespace MVCReleaseManagementProject.Models
         [Required]
         [RegularExpression("[a-zA-Z]+")]
         public string userId { get; set; }
-
         [Required]
-        [RegularExpression("[a-zA-Z0-9]")]
         public string password { get; set; }
 
         public string role { get; set; }

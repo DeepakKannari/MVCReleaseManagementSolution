@@ -24,22 +24,32 @@ namespace MVCReleaseManagementProject.Models
         //};
 
         [Required]
-
+        [Range(1,1000,ErrorMessage ="The Project Id should be between 1-1000")]
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Expected Start Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> E_start_Date { get; set; }
         [Required]
+        [Display(Name = "Expected End Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> E_end_Date { get; set; }
         [Required]
+        [Display(Name = "Actual Start Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> a_start_date { get; set; }
         [Required]
+        [Display(Name = "Actual End Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> a_end_date { get; set; }
         [Required]
+        [Display(Name = "Manager")]
         public string projectManager { get; set; }
         [Required]
-        
+        [Display(Name = "Project Status")]
         public string projectStatus { get; set; }
         [Required]
+        [Display(Name = "Team Lead")]
         public string TeamLead { get; set; }
 
         public List<SelectListItem> listofprojectmanagers = new List<SelectListItem>();

@@ -11,7 +11,7 @@ namespace MVCReleaseManagementProject.Models
 {
     using System;
     using System.Collections.Generic;
-   
+    using System.ComponentModel.DataAnnotations;
 
     public partial class project_modules
     {
@@ -21,25 +21,44 @@ namespace MVCReleaseManagementProject.Models
             this.bugs = new HashSet<bug>();
         }
 
-       
+       [Required]
+        [Display(Name = "Project Id")]
         public Nullable<int> projectid { get; set; }
-        
+        [Required]
+        [RegularExpression("[a-zA-Z ]+")]
+        [Display(Name = "Module Name")]
         public string name { get; set; }
-       
+        [Required]
+        [RegularExpression("[0-9]+")]
         public int id { get; set; }
-        
+        [Required]
+        [Display(Name = "Expected Start Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> e_start_date { get; set; }
-        
+        [Required]
+        [Display(Name = "Expected End Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> e_end_date { get; set; }
-        
+        [Required]
+        [Display(Name = "Actual Start Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> a_start_date { get; set; }
-        
+        [Required]
+        [Display(Name = "Actual End Date")]
+        [DataType(DataType.Date)]
+
         public Nullable<System.DateTime> a_end_date { get; set; }
-        
+        [Required]
+        [Display(Name = "Developer")]
+
         public string developer { get; set; }
-        
+        [Required]
+        [Display(Name = "Tester")]
+
         public string tester { get; set; }
-       
+        [Required]
+        [Display(Name = "Module Status")]
+
         public string module_status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

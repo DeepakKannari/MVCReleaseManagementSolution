@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/LayoutTester.cshtml";
 }
 
-<h2>Completed Modules</h2>
+<h2 style="text-align:center;">Completed Modules</h2>
 
-<p>
+<p style="text-align:center;">
     @Html.ActionLink("View All", "viewModule")
 </p>
 <table class="table">
@@ -31,10 +31,10 @@
             @Html.DisplayNameFor(model => model.module_status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee.Name)
+            @Html.DisplayNameFor(model => model.developer)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee1.Name)
+            @Html.DisplayNameFor(model => model.tester)
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.project.projectManager)

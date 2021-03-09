@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-<h2>Approved Projects</h2>
+<h2 style="text-align:center;">Approved Projects</h2>
 
-<p>
+<p style="text-align:center;">
     @Html.ActionLink("View All", "viewProject")
 </p>
 <table class="table">
@@ -27,11 +27,11 @@
         <th>
             @Html.DisplayNameFor(model => model.projectStatus)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Employee.Name)
-        </th>
+        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Employee1.Name)
+            @Html.DisplayNameFor(model => model.TeamLead)
         </th>
         <th></th>
     </tr>
@@ -53,9 +53,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.projectStatus)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Employee.Name)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Employee1.Name)
         </td>

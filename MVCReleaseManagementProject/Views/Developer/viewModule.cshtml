@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/LayoutDeveloper.cshtml";
 }
 
-<h2>View All Modules</h2>
+<h2 style="text-align:center;">View All Modules</h2>
 
-<p>
+<p style="text-align:center;">
     @Html.ActionLink("Filter By Completed", "viewCompletedModule") |
     @Html.ActionLink("Filter By Approved", "viewApprovedModule") |
     @Html.ActionLink("Filter By Development", "viewDevelopmentModule") |
@@ -34,10 +34,10 @@
             @Html.DisplayNameFor(model => model.module_status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee.Name)
+            @Html.DisplayNameFor(model => model.developer)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee1.Name)
+            @Html.DisplayNameFor(model => model.tester)
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.project.projectManager)

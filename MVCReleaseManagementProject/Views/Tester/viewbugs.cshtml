@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/LayoutTester.cshtml";
 }
 
-<h2>viewbugs</h2>
+<h2 style="text-align:center">View Bugs</h2>
 
-<p>
+<p style="text-align:center;">
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
@@ -43,7 +43,7 @@
     </td>
     <td>
         @*@Html.ActionLink("Close Bug", "closeBug", new { id = item.id }) |*@
-        @Html.ActionLink("Close Bug", "closeBug", new { id = item.id }) |
+        @Html.ActionLink("Close Bug", "closeBug", new { id = item.id }) 
         @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
     </td>
 </tr>

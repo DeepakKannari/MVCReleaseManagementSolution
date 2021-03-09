@@ -10,15 +10,28 @@ namespace MVCReleaseManagementProject.Models
     public class bugViewModel
     {
         [Required]
+        [Range(1,100,ErrorMessage ="The ID should be between 1-100")]
+        [Display(Name ="Bug Id")]
         public int id { get; set; }
         [Required]
+        [Range(1, 100, ErrorMessage = "The ID should be between 1-100")]
+        [Display(Name = "Module Id")]
         public Nullable<int> moduleId { get; set; }
         [Required]
+        [Display(Name = "Bug Description")]
         public string BugDescription { get; set; }
         [Required]
+        [Display(Name = "Bug Status")]
         public string BugStatus { get; set; }
 
         public List<SelectListItem> listofmoduleIds = new List<SelectListItem>();
+        
+        //public List<SelectListItem> listOfStatus = new List<SelectListItem>()
+        //{
+        //    new SelectListItem() { Text = "Open", Value = "development"},
+        //    new SelectListItem() { Text = "testing", Value = "testing"},
+        //    new SelectListItem() { Text = "completed", Value = "completed"},
+        //};
 
         public void populatelist(string testerId)
         {
@@ -28,6 +41,7 @@ namespace MVCReleaseManagementProject.Models
             {
                 this.listofmoduleIds.Add(new SelectListItem() { Text = item+"", Value = item+"" });
             }
+
             
         }
         public bug getbugValues()
@@ -36,7 +50,7 @@ namespace MVCReleaseManagementProject.Models
             tempproject.id = this.id;
             tempproject.moduleId = this.moduleId;
             tempproject.BugDescription = this.BugDescription;
-            tempproject.BugStatus = this.BugStatus;
+            tempproject.BugStatus = "open";
 
             return tempproject;
         }

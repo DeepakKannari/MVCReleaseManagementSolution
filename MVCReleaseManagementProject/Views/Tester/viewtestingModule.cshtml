@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/LayoutTester.cshtml";
 }
 
-<h2>Testing Modules</h2>
+<h2 style="text-align:center;">Testing Modules</h2>
 
-<p>
+<p style="text-align:center;">
     @Html.ActionLink("View All", "viewModule")
 </p>
 <table class="table">
@@ -31,10 +31,10 @@
             @Html.DisplayNameFor(model => model.module_status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee.Name)
+            @Html.DisplayNameFor(model => model.developer)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee1.Name)
+            @Html.DisplayNameFor(model => model.tester)
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.project.projectManager)
@@ -74,7 +74,7 @@
         <td>
             @Html.ActionLink("Raise a bug", "raiseABug", new { id = item.id }) |
             @Html.ActionLink("Mark as Complete", "completeModule", new { id = item.id })
-            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
         @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
         </td>
     </tr>
