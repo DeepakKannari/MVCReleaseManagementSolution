@@ -56,8 +56,20 @@ namespace MVCReleaseManagementProject.Controllers
         public ActionResult registerEmployee(signupViewModel signup)
         {
             ViewBag.roles = listOfroles;
+            Employee employee = new Employee();
+            employee.Id = signup.Id;
+            employee.Name = signup.Name;
+            employee.Role = signup.role;
+            dbContext.Employees.Add(employee);
+            dbContext.SaveChanges();
+            LogIn logIn = new LogIn();
+            logIn.userId = signup.Id;
+            logIn.password = signup.password;
+            logIn.role = signup.role;
+            dbContext.LogIns.Add(logIn);
+            dbContext.SaveChanges();
 
-            return View();
+            return View("LogIn");
         }
     }
 }
